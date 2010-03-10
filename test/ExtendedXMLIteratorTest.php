@@ -102,6 +102,16 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($exp, $this->root->firstChild());
 	}
 
+	public function testFirstChildInlineNamespace(){
+		$exp = $this->ns_root->book->children('http://example.com')->title;
+		$this->assertEquals($exp, $this->ns_root->book->firstChild('http://example.com'));
+	}
+	
+	public function testFirstChildNamespace(){
+		$exp = new ExtendedXMLIterator('<price xmlns="http://example.org">29.99</price>');
+		$this->assertEquals($exp, $this->ns_root->book->firstChild('http://example.org'));
+	}	
+	
 	public function testLastChild(){
 		$exp = new ExtendedXMLIterator('<book><title lang="de">Fuu</title><price>34.95</price></book>');
 		$this->assertEquals($exp, $this->root->lastChild());
