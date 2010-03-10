@@ -184,10 +184,6 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @return object first child-node
 	*/
 	public function firstChild($namespace = false){
-		// Note that this approach is faster then 
-		// using XPath to get the first node, while 
-		// using XPath to retrieve the last node is faster.
-		// see ExtendedXMLIterator::lastChild
 		$childs = $this->children($namespace);
 		return (isset($childs[0])) ? ($childs[0]) : false;
 	}
@@ -197,6 +193,7 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	*
 	* @name lastChild
 	* @access public
+	* @param string namespace of child
 	* @return object last child-node
 	*/
 	public function lastChild($namespace = false){
@@ -238,11 +235,12 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	*
 	* @name currentChilds
 	* @access public
+	* @param string namespace of the children
 	* @return object children of current child-node
 	*/
 	
-	public function currentChildren(){
-		return $this->current()->children();
+	public function currentChildren($namespace = false){
+		return $this->current()->children($namespace);
 	}
 	
 	/**
