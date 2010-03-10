@@ -25,6 +25,11 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 		}
 		$this->root = new ExtendedXMLIterator($this->xml);
 		$this->root->rewind();	
+		if(!$this->ns_xml){
+			$this->markTestSkipped('Could not get NS-XML Doc.');
+		}
+		$this->ns_root = new ExtendedXMLIterator($this->ns_xml);
+		$this->ns_root->rewind();
 	}
 	
 	public function testXpathSingle(){
