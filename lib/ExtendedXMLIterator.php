@@ -207,11 +207,12 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @name childrenXML
 	* @access public
 	* @param mixed Root-Node name to wrap XML-String in or true to use default
+	* @param string namespace of the children
 	* @return string children as XML
 	*/
-	public function childrenXML($root_node = false){
+	public function childrenXML($root_node = false, $namespace = false){
 		$xml = '';
-		foreach($this->children() as $child){
+		foreach($this->children($namespace) as $child){
 			$xml .= $child->asXML();
 		}
 		return self::__wrapRootNode($xml, $root_node);
