@@ -5,12 +5,17 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 
 	protected 
 		$xml = false,
+		$ns_xml,
 		$root;
 	
 	public function __construct(){		
 		$xml = file_get_contents(dirname (__FILE__).'/_files/test.xml');
 		if($xml){
 			$this->xml = $xml;
+		}
+		$ns_xml = file_get_contents(dirname (__FILE__).'/_files/namespace.xml');
+		if($ns_xml){
+			$this->ns_xml = $ns_xml;
 		}
 	}
 		
