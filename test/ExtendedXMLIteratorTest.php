@@ -120,7 +120,7 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 	
 	public function testLastChildNamespace(){
 		$exp = $this->ns_root->book[2]->children('http://example.org')->price;
-		$this->assertEquals($exp, $this->ns_root->book->lastChild('http://example.org'));
+		$this->assertEquals($exp, $this->ns_root->book[2]->lastChild('http://example.org')); 
 	}	
 
 	public function testLastChildInlineNamespace(){

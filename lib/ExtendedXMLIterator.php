@@ -199,12 +199,9 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @access public
 	* @return object last child-node
 	*/
-	public function lastChild(){
+	public function lastChild($namespace = false){
 		$childs = $this->children($namespace);
 		return $childs[(count($childs)-1)];
-		return (isset($childs[0])) ? ($childs[0]) : false;
-		// see ExtendedXMLIterator::firstChild
-		return $this->xpathSingle('self::*/*[last()]');
 	}
 	
 	/**
