@@ -101,10 +101,11 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @access public
 	* @param integer start-position
 	* @param integer end-position
+	* @param string namespace
 	* @return array Childs in Range
 	*/
-	public function childsRange($postition_start, $position_end){
-		return $this->xpath(self::childsRangeXpath($postition_start, $position_end));
+	public function childsRange($postition_start, $position_end, $namespace = false){
+		return $this->xpath(self::childsRangeXpath($postition_start, $position_end, $namespace));
 	}
 	
 	/**
@@ -116,10 +117,11 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @param integer start-position
 	* @param integer end-position
 	* @param string Root-Node to wrap XML-String in
+	* @param string namespace
 	* @return string Childs in Range as XML
 	*/
-	public function childsRangeXML($postition_start, $position_end, $root_node = false){
-		return $this->xpathXML(self::childsRangeXpath($postition_start, $position_end), $root_node);
+	public function childsRangeXML($postition_start, $position_end, $root_node = false, $namespace = false){
+		return $this->xpathXML(self::childsRangeXpath($postition_start, $position_end, $namespace), $root_node);
 	}
 	
 	/**
@@ -130,10 +132,12 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	* @access protected
 	* @param integer start-position
 	* @param integer end-position
+	* @param string namespace 
 	* @return string XPath-Expression
 	*/
-	protected static function childsRangeXpath($postition_start, $position_end){
-		return 'self::*/*[position() >='.$postition_start.' and position()<='.$position_end.']';
+	protected static function childsRangeXpath($postition_start, $position_end, $namespace = false){
+		$namespace_string = $namespace ? ' and '.self::__namespaceXpath($namespace) : '';
+		return 'self::*/*[position() >='.$postition_start.' and position()<='.$position_end.$namespace_string.']';
 	}
 	
 	/**
@@ -301,9 +305,13 @@ class ExtendedXMLIterator extends SimpleXMLIterator {
 	}
 	
 	protected static function __elemsByAttrXpath($attr, $value = false){
-		return ($value) ? "//*[@$attr=\"$value\"]" : "//*[@$attr]";
+		return ($value) ? "//*[@$attr='$value']" : "//*[@$attr]";
 	}
 
+	protected static function __namespaceXpath($namespace){
+		return "namespace-uri()='$namespace'";
+	}	
+	
 	protected static function __wrapRootNode($xml, $root_node){
 		if($root_node !== false){
 			$root_node = (is_string($root_node)) ? $root_node : 'root';
