@@ -119,13 +119,14 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 
 	
 	public function testLastChildNamespace(){
-		$exp = new ExtendedXMLIterator('<price xmlns="http://example.org">34.95</price>');
+		$exp = $this->ns_root->book[2]->children('http://example.org')->price;
 		$this->assertEquals($exp, $this->ns_root->book->lastChild('http://example.org'));
 	}	
 
 	public function testLastChildInlineNamespace(){
-		$exp = $this->ns_root->book->children('http://example.com')->title[2];
-		$this->assertEquals($exp, $this->ns_root->book->lastChild('http://example.com'));
+		$exp = $this->ns_root->book[2]->children('http://example.com')->title;
+		print_r($exp);
+		$this->assertEquals($exp, $this->ns_root->book[2]->lastChild('http://example.com'));
 	}		
 	
 	public function testAsXMLString(){
