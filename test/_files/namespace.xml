@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<bookstore xmlns:foo="http://example.com" xmlns:bar="http://example.com">
+<bookstore xmlns:foo="http://example.com">
 <book>
   <foo:title id="title1" lang="eng">Foo</foo:title>
-  <bar:price>29.99</bar:price>
+  <price xmlns="http://example.org">29.99</price>
 </book>
 <book>
   <foo:title lang="eng">Bar</foo:title>
-  <bar:price>39.95</bar:price>
+  <price xmlns="http://example.org">39.95</price>
 </book>
 <book>
   <foo:title lang="de">Fuu</foo:title>
-  <bar:price>34.95</bar:price>
+  <price xmlns="http://example.org">34.95</price>
 </book>
 </bookstore>
