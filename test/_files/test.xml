@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<bookstore>
+<book>
+  <title id="title1" lang="eng">Foo</title>
+  <price>29.99</price>
+</book>
+<book>
+  <title lang="eng">Bar</title>
+  <price>39.95</price>
+</book>
+<book>
+  <title lang="de">Fuu</title>
+  <price>34.95</price>
+</book>
+</bookstore>
