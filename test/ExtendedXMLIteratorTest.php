@@ -104,12 +104,12 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 	
 	public function testFirstChildNamespace(){
 		$exp = new ExtendedXMLIterator('<price xmlns="http://example.org">29.99</price>');
-		$this->assertEquals($exp, $this->ns_root->book->firstChild('http://example.org'));
+		$this->assertEquals($exp, $this->ns_root->children('http://example.com')->book->firstChild('http://example.org'));
 	}	
 
 	public function testFirstChildInlineNamespace(){
-		$exp = $this->ns_root->book->children('http://example.com')->title;
-		$this->assertEquals($exp, $this->ns_root->book->firstChild('http://example.com'));
+		$exp = $this->ns_root->children('http://example.com')->book->children('http://example.com')->title;
+		$this->assertEquals($exp, $this->ns_root->children('http://example.com')->book->firstChild('http://example.com'));
 	}	
 	
 	public function testLastChild(){
@@ -119,14 +119,14 @@ class ExtendedXMLIteratorTest extends PHPUnit_Framework_TestCase {
 
 	
 	public function testLastChildNamespace(){
-		$exp = $this->ns_root->book[2]->children('http://example.org')->price;
-		$this->assertEquals($exp, $this->ns_root->book[2]->lastChild('http://example.org')); 
+		$exp = $this->ns_root->children('http://example.com')->book[2]->children('http://example.org')->price;
+		$this->assertEquals($exp, $this->ns_root->children('http://example.com')->book[2]->lastChild('http://example.org')); 
 	}	
 
 	public function testLastChildInlineNamespace(){
-		$exp = $this->ns_root->book[2]->children('http://example.com')->title;
+		$exp = $this->ns_root->children('http://example.com')->book[2]->children('http://example.com')->title;
 		print_r($exp);
-		$this->assertEquals($exp, $this->ns_root->book[2]->lastChild('http://example.com'));
+		$this->assertEquals($exp, $this->ns_root->children('http://example.com')->book[2]->lastChild('http://example.com'));
 	}		
 	
 	public function testAsXMLString(){
